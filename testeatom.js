@@ -1,0 +1,145 @@
+function mostrarInformacoes() {
+    const select = document.getElementById('meuSelect');
+    const valorSelecionado = select.value;
+    const resultado = document.getElementById('resultado');
+    const produtos = [// Array com objetos, cada um representando uma opção
+            { nome: 'Hidrogênio (H)', simbolo: 'H', numeroAtomico: 1, massaAtomica: 1.008, grupo: 1, configEletro: '1s1' },
+            { nome: 'Hélio (He)', simbolo: 'He', numeroAtomico: 2, massaAtomica: 4.0026, grupo: 18, configEletro: '1s2' },
+            { nome: 'Lítio (Li)', simbolo: 'Li', numeroAtomico: 3, massaAtomica: 6.94, grupo: 1, configEletro: '1s2 2s1' },
+            { nome: 'Berílio (Be)', simbolo: 'Be', numeroAtomico: 4, massaAtomica: 9.0122, grupo: 2, configEletro: '1s2 2s2' },
+            { nome: 'Boro (B)', simbolo: 'B', numeroAtomico: 5, massaAtomica: 10.81, grupo: 13, configEletro: '1s2 2s2 2p1' },
+            { nome: 'Carbono (C)', simbolo: 'C', numeroAtomico: 6, massaAtomica: 12.011, grupo: 14, configEletro: '1s2 2s2 2p2' },
+            { nome: 'Nitrogênio (N)', simbolo: 'N', numeroAtomico: 7, massaAtomica: 14.007, grupo: 15, configEletro: '1s2 2s2 2p3' },
+            { nome: 'Oxigênio (O)', simbolo: 'O', numeroAtomico: 8, massaAtomica: 15.999, grupo: 16, configEletro: '1s2 2s2 2p4' },
+            { nome: 'Flúor (F)', simbolo: 'F', numeroAtomico: 9, massaAtomica: 18.998, grupo: 17, configEletro: '1s2 2s2 2p5' },
+            { nome: 'Neônio (Ne)', simbolo: 'Ne', numeroAtomico: 10, massaAtomica: 20.180, grupo: 18, configEletro: '1s2 2s2 2p6' },
+            { nome: 'Sódio (Na)', simbolo: 'Na', numeroAtomico: 11, massaAtomica: 22.990, grupo: 1, configEletro: '1s2 2s2 2p6 3s1' },
+            { nome: 'Magnésio (Mg)', simbolo: 'Mg', numeroAtomico: 12, massaAtomica: 24.305, grupo: 2, configEletro: '1s2 2s2 2p6 3s2' },
+            { nome: 'Alumínio (Al)', simbolo: 'Al', numeroAtomico: 13, massaAtomica: 26.982, grupo: 13, configEletro: '1s2 2s2 2p6 3s2 3p1' },
+            { nome: 'Silício (Si)', simbolo: 'Si', numeroAtomico: 14, massaAtomica: 28.085, grupo: 14, configEletro: '1s2 2s2 2p6 3s2 3p2' },
+            { nome: 'Fósforo (P)', simbolo: 'P', numeroAtomico: 15, massaAtomica: 30.974, grupo: 15, configEletro: '1s2 2s2 2p6 3s2 3p3' },
+            { nome: 'Enxofre (S)', simbolo: 'S', numeroAtomico: 16, massaAtomica: 32.06, grupo: 16, configEletro: '1s2 2s2 2p6 3s2 3p4' },
+            { nome: 'Cloro (Cl)', simbolo: 'Cl', numeroAtomico: 17, massaAtomica: 35.45, grupo: 17, configEletro: '1s2 2s2 2p6 3s2 3p5' },
+            { nome: 'Argônio (Ar)', simbolo: 'Ar', numeroAtomico: 18, massaAtomica: 39.948, grupo: 18, configEletro: '1s2 2s2 2p6 3s2 3p6' },
+            { nome: 'Potássio (K)', simbolo: 'K', numeroAtomico: 19, massaAtomica: 39.098, grupo: 1, configEletro: '1s2 2s2 2p6 3s2 3p6 4s1' },
+            { nome: 'Cálcio (Ca)', simbolo: 'Ca', numeroAtomico: 20, massaAtomica: 40.078, grupo: 2, configEletro: '1s2 2s2 2p6 3s2 3p6 4s2' },
+            { nome: 'Escândio (Sc)', simbolo: 'Sc', numeroAtomico: 21, massaAtomica: 44.956, grupo: 3, configEletro: '[Ar] 3d1 4s2' },
+            { nome: 'Titânio (Ti)', simbolo: 'Ti', numeroAtomico: 22, massaAtomica: 47.867, grupo: 4, configEletro: '[Ar] 3d2 4s2' },
+            { nome: 'Vanádio (V)', simbolo: 'V', numeroAtomico: 23, massaAtomica: 50.942, grupo: 5, configEletro: '[Ar] 3d3 4s2' },
+            { nome: 'Cromo (Cr)', simbolo: 'Cr', numeroAtomico: 24, massaAtomica: 51.996, grupo: 6, configEletro: '[Ar] 3d5 4s1' },
+            { nome: 'Manganês (Mn)', simbolo: 'Mn', numeroAtomico: 25, massaAtomica: 54.938, grupo: 7, configEletro: '[Ar] 3d5 4s2' },
+            { nome: 'Ferro (Fe)', simbolo: 'Fe', numeroAtomico: 26, massaAtomica: 55.845, grupo: 8, configEletro: '[Ar] 3d6 4s2' },
+            { nome: 'Cobalto (Co)', simbolo: 'Co', numeroAtomico: 27, massaAtomica: 58.933, grupo: 9, configEletro: '[Ar] 3d7 4s2' },
+            { nome: 'Níquel (Ni)', simbolo: 'Ni', numeroAtomico: 28, massaAtomica: 58.693, grupo: 10, configEletro: '[Ar] 3d8 4s2' },
+            { nome: 'Cobre (Cu)', simbolo: 'Cu', numeroAtomico: 29, massaAtomica: 63.546, grupo: 11, configEletro: '[Ar] 3d10 4s1' },
+            { nome: 'Zinco (Zn)', simbolo: 'Zn', numeroAtomico: 30, massaAtomica: 65.38, grupo: 12, configEletro: '[Ar] 3d10 4s2' },
+            { nome: 'Gálio (Ga)', simbolo: 'Ga', numeroAtomico: 31, massaAtomica: 69.723, grupo: 13, configEletro: '[Ar] 3d10 4s2 4p1' },
+            { nome: 'Germânio (Ge)', simbolo: 'Ge', numeroAtomico: 32, massaAtomica: 72.63, grupo: 14, configEletro: '[Ar] 3d10 4s2 4p2' },
+            { nome: 'Arsênio (As)', simbolo: 'As', numeroAtomico: 33, massaAtomica: 74.922, grupo: 15, configEletro: '[Ar] 3d10 4s2 4p3' },
+            { nome: 'Selênio (Se)', simbolo: 'Se', numeroAtomico: 34, massaAtomica: 78.971, grupo: 16, configEletro: '[Ar] 3d10 4s2 4p4' },
+            { nome: 'Bromo (Br)', simbolo: 'Br', numeroAtomico: 35, massaAtomica: 79.904, grupo: 17, configEletro: '[Ar] 3d10 4s2 4p5' },
+            { nome: 'Criptônio (Kr)', simbolo: 'Kr', numeroAtomico: 36, massaAtomica: 83.798, grupo: 18, configEletro: '[Ar] 3d10 4s2 4p6' },
+            { nome: 'Rubídio (Rb)', simbolo: 'Rb', numeroAtomico: 37, massaAtomica: 85.468, grupo: 1, configEletro: '[Kr] 5s1' },
+            { nome: 'Estrôncio (Sr)', simbolo: 'Sr', numeroAtomico: 38, massaAtomica: 87.62, grupo: 2, configEletro: '[Kr] 5s2' },
+            { nome: 'Ítrio (Y)', simbolo: 'Y', numeroAtomico: 39, massaAtomica: 88.906, grupo: 3, configEletro: '[Kr] 4d1 5s2' },
+            { nome: 'Zircônio (Zr)', simbolo: 'Zr', numeroAtomico: 40, massaAtomica: 91.224, grupo: 4, configEletro: '[Kr] 4d2 5s2' },
+            { nome: 'Nióbio (Nb)', simbolo: 'Nb', numeroAtomico: 41, massaAtomica: 92.906, grupo: 5, configEletro: '[Kr] 4d4 5s1' },
+            { nome: 'Molibdênio (Mo)', simbolo: 'Mo', numeroAtomico: 42, massaAtomica: 95.95, grupo: 6, configEletro: '[Kr] 4d5 5s1' },
+            { nome: 'Tecnécio (Tc)', simbolo: 'Tc', numeroAtomico: 43, massaAtomica: 98, grupo: 7, configEletro: '[Kr] 4d5 5s2' },
+            { nome: 'Rutênio (Ru)', simbolo: 'Ru', numeroAtomico: 44, massaAtomica: 101.07, grupo: 8, configEletro: '[Kr] 4d7 5s1' },
+            { nome: 'Ródio (Rh)', simbolo: 'Rh', numeroAtomico: 45, massaAtomica: 102.91, grupo: 9, configEletro: '[Kr] 4d8 5s1' },
+            { nome: 'Paládio (Pd)', simbolo: 'Pd', numeroAtomico: 46, massaAtomica: 106.42, grupo: 10, configEletro: '[Kr] 4d10' },
+            { nome: 'Prata (Ag)', simbolo: 'Ag', numeroAtomico: 47, massaAtomica: 107.87, grupo: 11, configEletro: '[Kr] 4d10 5s1' },
+            { nome: 'Cádmio (Cd)', simbolo: 'Cd', numeroAtomico: 48, massaAtomica: 112.41, grupo: 12, configEletro: '[Kr] 4d10 5s2' },
+            { nome: 'Índio (In)', simbolo: 'In', numeroAtomico: 49, massaAtomica: 114.82, grupo: 13, configEletro: '[Kr] 4d10 5s2 5p1' },
+            { nome: 'Estanho (Sn)', simbolo: 'Sn', numeroAtomico: 50, massaAtomica: 118.71, grupo: 14, configEletro: '[Kr] 4d10 5s2 5p2' },
+            { nome: 'Antimônio (Sb)', simbolo: 'Sb', numeroAtomico: 51, massaAtomica: 121.76, grupo: 15, configEletro: '[Kr] 4d10 5s2 5p3' },
+            { nome: 'Telúrio (Te)', simbolo: 'Te', numeroAtomico: 52, massaAtomica: 127.60, grupo: 16, configEletro: '[Kr] 4d10 5s2 5p4' },
+            { nome: 'Iodo (I)', simbolo: 'I', numeroAtomico: 53, massaAtomica: 126.90, grupo: 17, configEletro: '[Kr] 4d10 5s2 5p5' },
+            { nome: 'Xenônio (Xe)', simbolo: 'Xe', numeroAtomico: 54, massaAtomica: 131.29, grupo: 18, configEletro: '[Kr] 4d10 5s2 5p6' },
+            { nome: 'Césio (Cs)', simbolo: 'Cs', numeroAtomico: 55, massaAtomica: 132.91, grupo: 1, configEletro: '[Xe] 6s1' },
+            { nome: 'Bário (Ba)', simbolo: 'Ba', numeroAtomico: 56, massaAtomica: 137.33, grupo: 2, configEletro: '[Xe] 6s2' },
+            { nome: 'Lantânio (La)', simbolo: 'La', numeroAtomico: 57, massaAtomica: 138.91, grupo: 3, configEletro: '[Xe] 5d1 6s2' },
+            { nome: 'Cério (Ce)', simbolo: 'Ce', numeroAtomico: 58, massaAtomica: 140.12, grupo: 'Lantanídeos', configEletro: '[Xe] 4f1 5d1 6s2' },
+            { nome: 'Praseodímio (Pr)', simbolo: 'Pr', numeroAtomico: 59, massaAtomica: 140.91, grupo: 'Lantanídeos', configEletro: '[Xe] 4f3 6s2' },
+            { nome: 'Neodímio (Nd)', simbolo: 'Nd', numeroAtomico: 60, massaAtomica: 144.24, grupo: 'Lantanídeos', configEletro: '[Xe] 4f4 6s2' },
+            { nome: 'Promécio (Pm)', simbolo: 'Pm', numeroAtomico: 61, massaAtomica: 145, grupo: 'Lantanídeos', configEletro: '[Xe] 4f5 6s2' },
+            { nome: 'Samário (Sm)', simbolo: 'Sm', numeroAtomico: 62, massaAtomica: 150.36, grupo: 'Lantanídeos', configEletro: '[Xe] 4f6 6s2' },
+            { nome: 'Európio (Eu)', simbolo: 'Eu', numeroAtomico: 63, massaAtomica: 151.96, grupo: 'Lantanídeos', configEletro: '[Xe] 4f7 6s2' },
+            { nome: 'Gadolínio (Gd)', simbolo: 'Gd', numeroAtomico: 64, massaAtomica: 157.25, grupo: 'Lantanídeos', configEletro: '[Xe] 4f7 5d1 6s2' },
+            { nome: 'Térbio (Tb)', simbolo: 'Tb', numeroAtomico: 65, massaAtomica: 158.93, grupo: 'Lantanídeos', configEletro: '[Xe] 4f9 6s2' },
+            { nome: 'Disprósio (Dy)', simbolo: 'Dy', numeroAtomico: 66, massaAtomica: 162.50, grupo: 'Lantanídeos', configEletro: '[Xe] 4f10 6s2' },
+            { nome: 'Hólmio (Ho)', simbolo: 'Ho', numeroAtomico: 67, massaAtomica: 164.93, grupo: 'Lantanídeos', configEletro: '[Xe] 4f11 6s2' },
+            { nome: 'Érbio (Er)', simbolo: 'Er', numeroAtomico: 68, massaAtomica: 167.26, grupo: 'Lantanídeos', configEletro: '[Xe] 4f12 6s2' },
+            { nome: 'Túlio (Tm)', simbolo: 'Tm', numeroAtomico: 69, massaAtomica: 168.93, grupo: 'Lantanídeos', configEletro: '[Xe] 4f13 6s2' },
+            { nome: 'Itérbio (Yb)', simbolo: 'Yb', numeroAtomico: 70, massaAtomica: 173.05, grupo: 'Lantanídeos', configEletro: '[Xe] 4f14 6s2' },
+            { nome: 'Lutécio (Lu)', simbolo: 'Lu', numeroAtomico: 71, massaAtomica: 174.97, grupo: 'Lantanídeos', configEletro: '[Xe] 4f14 5d1 6s2' },
+            { nome: 'Háfnio (Hf)', simbolo: 'Hf', numeroAtomico: 72, massaAtomica: 178.49, grupo: 4, configEletro: '[Xe] 4f14 5d2 6s2' },
+            { nome: 'Tântalo (Ta)', simbolo: 'Ta', numeroAtomico: 73, massaAtomica: 180.95, grupo: 5, configEletro: '[Xe] 4f14 5d3 6s2' },
+            { nome: 'Tungstênio (W)', simbolo: 'W', numeroAtomico: 74, massaAtomica: 183.84, grupo: 6, configEletro: '[Xe] 4f14 5d4 6s2' },
+            { nome: 'Rênio (Re)', simbolo: 'Re', numeroAtomico: 75, massaAtomica: 186.21, grupo: 7, configEletro: '[Xe] 4f14 5d5 6s2' },
+            { nome: 'Ósmio (Os)', simbolo: 'Os', numeroAtomico: 76, massaAtomica: 190.23, grupo: 8, configEletro: '[Xe] 4f14 5d6 6s2' },
+            { nome: 'Irídio (Ir)', simbolo: 'Ir', numeroAtomico: 77, massaAtomica: 192.22, grupo: 9, configEletro: '[Xe] 4f14 5d7 6s2' },
+            { nome: 'Platina (Pt)', simbolo: 'Pt', numeroAtomico: 78, massaAtomica: 195.08, grupo: 10, configEletro: '[Xe] 4f14 5d9 6s1' },
+            { nome: 'Ouro (Au)', simbolo: 'Au', numeroAtomico: 79, massaAtomica: 196.97, grupo: 11, configEletro: '[Xe] 4f14 5d10 6s1' },
+            { nome: 'Mercúrio (Hg)', simbolo: 'Hg', numeroAtomico: 80, massaAtomica: 200.59, grupo: 12, configEletro: '[Xe] 4f14 5d10 6s2' },
+            { nome: 'Tálio (Tl)', simbolo: 'Tl', numeroAtomico: 81, massaAtomica: 204.38, grupo: 13, configEletro: '[Xe] 4f14 5d10 6s2 6p1' },
+            { nome: 'Chumbo (Pb)', simbolo: 'Pb', numeroAtomico: 82, massaAtomica: 207.2, grupo: 14, configEletro: '[Xe] 4f14 5d10 6s2 6p2' },
+            { nome: 'Bismuto (Bi)', simbolo: 'Bi', numeroAtomico: 83, massaAtomica: 208.98, grupo: 15, configEletro: '[Xe] 4f14 5d10 6s2 6p3' },
+            { nome: 'Polônio (Po)', simbolo: 'Po', numeroAtomico: 84, massaAtomica: 209, grupo: 16, configEletro: '[Xe] 4f14 5d10 6s2 6p4' },
+            { nome: 'Astato (At)', simbolo: 'At', numeroAtomico: 85, massaAtomica: 210, grupo: 17, configEletro: '[Xe] 4f14 5d10 6s2 6p5' },
+            { nome: 'Radônio (Rn)', simbolo: 'Rn', numeroAtomico: 86, massaAtomica: 222, grupo: 18, configEletro: '[Xe] 4f14 5d10 6s2 6p6' },
+            { nome: 'Frâncio (Fr)', simbolo: 'Fr', numeroAtomico: 87, massaAtomica: 223, grupo: 1, configEletro: '[Rn] 7s1' },
+            { nome: 'Rádio (Ra)', simbolo: 'Ra', numeroAtomico: 88, massaAtomica: 226, grupo: 2, configEletro: '[Rn] 7s2' },
+            { nome: 'Actínio (Ac)', simbolo: 'Ac', numeroAtomico: 89, massaAtomica: 227, grupo: 'Actinídeos', configEletro: '[Rn] 6d1 7s2' },
+            { nome: 'Tório (Th)', simbolo: 'Th', numeroAtomico: 90, massaAtomica: 232.04, grupo: 'Actinídeos', configEletro: '[Rn] 6d2 7s2' },
+            { nome: 'Protactínio (Pa)', simbolo: 'Pa', numeroAtomico: 91, massaAtomica: 231.04, grupo: 'Actinídeos', configEletro: '[Rn] 5f2 6d1 7s2' },
+            { nome: 'Urânio (U)', simbolo: 'U', numeroAtomico: 92, massaAtomica: 238.03, grupo: 'Actinídeos', configEletro: '[Rn] 5f3 6d1 7s2' },
+            { nome: 'Netúnio (Np)', simbolo: 'Np', numeroAtomico: 93, massaAtomica: 237, grupo: 'Actinídeos', configEletro: '[Rn] 5f4 6d1 7s2' },
+            { nome: 'Plutônio (Pu)', simbolo: 'Pu', numeroAtomico: 94, massaAtomica: 244, grupo: 'Actinídeos', configEletro: '[Rn] 5f6 7s2' },
+            { nome: 'Amerício (Am)', simbolo: 'Am', numeroAtomico: 95, massaAtomica: 243, grupo: 'Actinídeos', configEletro: '[Rn] 5f7 7s2' },
+            { nome: 'Cúrio (Cm)', simbolo: 'Cm', numeroAtomico: 96, massaAtomica: 247, grupo: 'Actinídeos', configEletro: '[Rn] 5f7 6d1 7s2' },
+            { nome: 'Berquélio (Bk)', simbolo: 'Bk', numeroAtomico: 97, massaAtomica: 247, grupo: 'Actinídeos', configEletro: '[Rn] 5f9 7s2' },
+            { nome: 'Califórnio (Cf)', simbolo: 'Cf', numeroAtomico: 98, massaAtomica: 251, grupo: 'Actinídeos', configEletro: '[Rn] 5f10 7s2' },
+            { nome: 'Einstênio (Es)', simbolo: 'Es', numeroAtomico: 99, massaAtomica: 252, grupo: 'Actinídeos', configEletro: '[Rn] 5f11 7s2' },
+            { nome: 'Férmio (Fm)', simbolo: 'Fm', numeroAtomico: 100, massaAtomica: 257, grupo: 'Actinídeos', configEletro: '[Rn] 5f12 7s2' },
+            { nome: 'Mendelévio (Md)', simbolo: 'Md', numeroAtomico: 101, massaAtomica: 258, grupo: 'Actinídeos', configEletro: '[Rn] 5f13 7s2' },
+            { nome: 'Nobélio (No)', simbolo: 'No', numeroAtomico: 102, massaAtomica: 259, grupo: 'Actinídeos', configEletro: '[Rn] 5f14 7s2' },
+            { nome: 'Laurêncio (Lr)', simbolo: 'Lr', numeroAtomico: 103, massaAtomica: 262, grupo: 'Actinídeos', configEletro: '[Rn] 5f14 7s2 7p1' },
+            { nome: 'Rutherfórdio (Rf)', simbolo: 'Rf', numeroAtomico: 104, massaAtomica: 267, grupo: 4, configEletro: '[Rn] 5f14 6d2 7s2' },
+            { nome: 'Dúbnio (Db)', simbolo: 'Db', numeroAtomico: 105, massaAtomica: 270, grupo: 5, configEletro: '[Rn] 5f14 6d3 7s2' },
+            { nome: 'Seabórgio (Sg)', simbolo: 'Sg', numeroAtomico: 106, massaAtomica: 271, grupo: 6, configEletro: '[Rn] 5f14 6d4 7s2' },
+            { nome: 'Bóhrio (Bh)', simbolo: 'Bh', numeroAtomico: 107, massaAtomica: 270, grupo: 7, configEletro: '[Rn] 5f14 6d5 7s2' },
+            { nome: 'Hássio (Hs)', simbolo: 'Hs', numeroAtomico: 108, massaAtomica: 277, grupo: 8, configEletro: '[Rn] 5f14 6d6 7s2' },
+            { nome: 'Meitnério (Mt)', simbolo: 'Mt', numeroAtomico: 109, massaAtomica: 278, grupo: 9, configEletro: '[Rn] 5f14 6d7 7s2' },
+            { nome: 'Darmstádio (Ds)', simbolo: 'Ds', numeroAtomico: 110, massaAtomica: 281, grupo: 10, configEletro: '[Rn] 5f14 6d8 7s2' },
+            { nome: 'Roentgênio (Rg)', simbolo: 'Rg', numeroAtomico: 111, massaAtomica: 282, grupo: 11, configEletro: '[Rn] 5f14 6d9 7s2' },
+            { nome: 'Copernício (Cn)', simbolo: 'Cn', numeroAtomico: 112, massaAtomica: 285, grupo: 12, configEletro: '[Rn] 5f14 6d10 7s2' },
+            { nome: 'Nihônio (Nh)', simbolo: 'Nh', numeroAtomico: 113, massaAtomica: 286, grupo: 13, configEletro: '[Rn] 5f14 6d10 7s2 7p1' },
+            { nome: 'Fleróvio (Fl)', simbolo: 'Fl', numeroAtomico: 114, massaAtomica: 289, grupo: 14, configEletro: '[Rn] 5f14 6d10 7s2 7p2' },
+            { nome: 'Moscóvio (Mc)', simbolo: 'Mc', numeroAtomico: 115, massaAtomica: 290, grupo: 15, configEletro: '[Rn] 5f14 6d10 7s2 7p3' },
+            { nome: 'Livermório (Lv)', simbolo: 'Lv', numeroAtomico: 116, massaAtomica: 293, grupo: 16, configEletro: '[Rn] 5f14 6d10 7s2 7p4' },
+            { nome: 'Tenessino (Ts)', simbolo: 'Ts', numeroAtomico: 117, massaAtomica: 294, grupo: 17, configEletro: '[Rn] 5f14 6d10 7s2 7p5' },
+            { nome: 'Oganessônio (Og)', simbolo: 'Og', numeroAtomico: 118, massaAtomica: 294, grupo: 18, configEletro: '[Rn] 5f14 6d10 7s2 7p6' }        
+          ]  
+    // Encontrar o produto com o nome correspondente ao valor selecionado
+    const produtoSelecionado = produtos.find(produto => produto.nome === valorSelecionado);
+    const avogadro = 6.022
+    const gramas = document.getElementById('peso')
+          function calcGramas(v1 = 0,v2 = 0,v3 = 1) {
+                return v1 * v2 / (v3)
+          }
+    if (produtoSelecionado) {
+      resultado.innerHTML = `
+        <p>Em ${gramas.value} gramas de ${produtoSelecionado.nome} há ${calcGramas(gramas.value, avogadro, produtoSelecionado.massaAtomica).toFixed(3)} X 10²³ átomos.
+        <p>Nome: ${produtoSelecionado.nome}</p>
+        <p>Simbolo: ${produtoSelecionado.simbolo}</p>
+        <p>Número Atômico: ${produtoSelecionado.numeroAtomico}</p>
+        <p>Massa Atômica: ${produtoSelecionado.massaAtomica}</p>
+        <p>Grupo: ${produtoSelecionado.grupo}</p>
+        <p>Configuração Eletrônica: ${produtoSelecionado.configEletro}</p>
+      `;
+    } else {
+      resultado.textContent = 'Produto não encontrado.';
+    }
+  }
